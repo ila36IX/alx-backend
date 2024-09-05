@@ -39,6 +39,9 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """If a user requests two queries and some rows are removed, they must
+        not miss anything when you change pages.
+        """
         dataset = self.indexed_dataset()
         assert index < len(dataset)
         media = {
