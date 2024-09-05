@@ -1,7 +1,8 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Pagenetion offset-limit helper
 """
+
 
 def index_range(page, page_size):
     """Pagenetion offset-limit helper"""
