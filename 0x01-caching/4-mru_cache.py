@@ -7,7 +7,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """doc"""
+    """doc must be too long to be pased """
 
     def __init__(self):
         """_summary"""
@@ -15,7 +15,7 @@ class MRUCache(BaseCaching):
         self.usedKeys = []
 
     def put(self, key, item):
-        """999"""
+        """doc must be too long to be pased """
         if key is not None and item is not None:
             self.cache_data[key] = item
             if key not in self.usedKeys:
@@ -29,7 +29,7 @@ class MRUCache(BaseCaching):
                 print('DISCARD: {:s}'.format(discard))
 
     def get(self, key):
-        """testin"""
+        """doc must be too long to be pased """
         if key is not None and key in self.cache_data.keys():
             self.usedKeys.append(self.usedKeys.pop(self.usedKeys.index(key)))
             return self.cache_data.get(key)
