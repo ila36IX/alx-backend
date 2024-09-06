@@ -1,32 +1,34 @@
 #!/usr/bin/env python3
 """
 LRU caching
-Least recently used
 """
 BaseCaching = __import__("base_caching").BaseCaching
 
-
 class LRUCache(BaseCaching):
-    """alien doc"""
+    """doc"""
 
     def __init__(self):
-        """alien doc"""
+        """_doc_"""
         super().__init__()
-        self.order = []
+        self.usedKeys = []
 
     def put(self, key, item):
-        """setting item"""
-        if key and item:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                removed = self.order.pop(0)
-                self.cache_data.pop(removed)
-                print("DISCARD: {}".format(removed))
+        """summary"""
+        if key is not None and item is not None:
             self.cache_data[key] = item
-            self.order.append(key)
+            if key not in self.usedKeys:
+                self.usedKeys.append(key)
+            else:
+                self.usedKeys.append(
+                    self.usedKeys.pop(self.usedKeys.index(key)))
+            if len(self.usedKeys) > BaseCaching.MAX_ITEMS:
+                discard = self.usedKeys.pop(0)
+                del self.cache_data[discard]
+                print('DISCARD: {:s}'.format(discard))
 
     def get(self, key):
-        """Getting item"""
-        if key in self.cache_data:
-            self.order.remove(key)
-            self.order.append(key)
+        """docs"""
+        if key is not None and key in self.cache_data.keys():
+            self.usedKeys.append(self.usedKeys.pop(self.usedKeys.index(key)))
             return self.cache_data.get(key)
+        return None

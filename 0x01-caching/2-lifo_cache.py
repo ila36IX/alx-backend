@@ -16,6 +16,8 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """insert into stack if it's not full"""
+        if key is None or item is None:
+            return
         if key not in self.LIFO:
             if len(self.LIFO) == self.MAX_ITEMS:
                 discord_key = self.LIFO.pop(-1)
