@@ -5,15 +5,15 @@ LRU caching
 BaseCaching = __import__("base_caching").BaseCaching
 
 class LRUCache(BaseCaching):
-    """doc"""
+    """doc is important to make"""
 
     def __init__(self):
-        """_doc_"""
+        """doc is important to make"""
         super().__init__()
         self.usedKeys = []
 
     def put(self, key, item):
-        """summary"""
+        """doc is important to make"""
         if key is not None and item is not None:
             self.cache_data[key] = item
             if key not in self.usedKeys:
@@ -27,7 +27,7 @@ class LRUCache(BaseCaching):
                 print('DISCARD: {:s}'.format(discard))
 
     def get(self, key):
-        """docs"""
+        """doc is important to make"""
         if key is not None and key in self.cache_data.keys():
             self.usedKeys.append(self.usedKeys.pop(self.usedKeys.index(key)))
             return self.cache_data.get(key)
