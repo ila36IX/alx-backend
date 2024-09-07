@@ -6,30 +6,37 @@ BaseCaching = __import__("base_caching").BaseCaching
 
 
 class LRUCache(BaseCaching):
-    """doc is important to make"""
-
+    """Least Recently Used by keeps track of the most recently used items and
+    discards the least recently used ones when the cache reaches its capacity
+    """
     def __init__(self):
-        """doc is important to make"""
+        """init least recetly used cache data structure"""
         super().__init__()
-        self.usedKeys = []
+        self.LRU = []
 
     def put(self, key, item):
-        """doc is important to make"""
-        if key is not None and item is not None:
+        """Insert new key-value in the cache system and discord lru if reaches
+        its capacity
+        """
+        if key is None or item is None:
+            return
+        if key in self.LRU:
+            self.LRU.remove(key)
+            self.LRU.insert(0, key)
             self.cache_data[key] = item
-            if key not in self.usedKeys:
-                self.usedKeys.append(key)
-            else:
-                self.usedKeys.append(
-                    self.usedKeys.pop(self.usedKeys.index(key)))
-            if len(self.usedKeys) > BaseCaching.MAX_ITEMS:
-                discard = self.usedKeys.pop(0)
-                del self.cache_data[discard]
-                print('DISCARD: {:s}'.format(discard))
+            return
+
+        if len(self.LRU) >= self.MAX_ITEMS:
+            evict_key = self.LRU.pop(-1)
+            print('DISCARD:', evict_key)
+            del self.cache_data[evict_key]
+        self.LRU.insert(0, key)
+        self.cache_data[key] = item
 
     def get(self, key):
-        """doc is important to make"""
-        if key is not None and key in self.cache_data.keys():
-            self.usedKeys.append(self.usedKeys.pop(self.usedKeys.index(key)))
-            return self.cache_data.get(key)
-        return None
+        """Get new value using key in the cache system and update lru key"""
+        if key not in self.LRU:
+            return
+        self.LRU.remove(key)
+        self.LRU.insert(0, key)
+        return self.cache_data[key]
