@@ -21,6 +21,8 @@ class LFUCache(BaseCaching):
         """Insert new element in the cache, and discord least freaquanlty used
         key if the cache reaches it's capacity
         """
+        if key is None or item is None:
+            return
         if key in self.lfu:
             self.lfu[key] += 1
             self.lru.remove(key)
