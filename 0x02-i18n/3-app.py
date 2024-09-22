@@ -3,7 +3,7 @@
 Adding the `getlocale` function to determine the best match language
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 app = Flask(__name__)
@@ -28,9 +28,7 @@ app.config.from_object(Config)
 
 @app.route('/', strict_slashes=False)
 def hello_i18n():
-    """single page using flask template
-    single page using flask template
-    """
+    """single page using flask template"""
     return render_template('3-index.html')
 
 
