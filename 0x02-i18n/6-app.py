@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Adding the `getlocale` function to determine the best match language
 """
@@ -39,7 +39,7 @@ def get_user():
     """Returns a user dictionary or None if the ID cannot be found or if
     login_as was not passed
     """
-    user_id = request.args.get('login_as', None) 
+    user_id = request.args.get('login_as', None)
     if user_id is None or not user_id.isdigit():
         return None
     return users.get(int(user_id))
