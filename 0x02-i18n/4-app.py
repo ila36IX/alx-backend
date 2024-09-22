@@ -3,7 +3,7 @@
 Adding the `getlocale` function to determine the best match language
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 app = Flask(__name__)
