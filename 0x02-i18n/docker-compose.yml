@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  flask-babel-app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./:/app"
+    container_name: 0x02-i18n
